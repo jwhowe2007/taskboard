@@ -4,11 +4,11 @@ import './TaskBoard.css';
 
 function TaskBoard() {
   return (
-    <div className="board">
-        <div>Lane 1</div>
-        <div>Lane 2</div>
-        <div>Lane 3</div>
-        <div>Lane 4</div>
+    <div className="TaskBoard">
+        <div className="swimlane backlog">Lane 1</div>
+        <div className="swimlane todo">Lane 2</div>
+        <div className="swimlane in-progress">Lane 3</div>
+        <div className="swimlane completed">Lane 4</div>
     </div>
   );
 }
