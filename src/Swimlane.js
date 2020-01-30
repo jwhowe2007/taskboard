@@ -5,54 +5,19 @@ class Swimlane extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.moveTask = this.moveTask.bind(this);
     this.addTask = this.addTask.bind(this);
-
-    // this.state = {
-    //   cards: []
-    // };
   }
-
-  // moveTask(cardId, destIndex) {
-  //
-  //   // this.setState((newState, props) => {
-  //   //
-  //   //   newState.cards = newState.cards.filter((card) => {
-  //   //
-  //   //     return card.id === cardId;
-  //   //   }).map((card) => {
-  //   //
-  //   //     card.index = destIndex;
-  //   //
-  //   //     return card;
-  //   //   });
-  //   //
-  //   //   console.log("New state: ", newState);
-  //   //
-  //   //   return newState;
-  //   // });
-  //
-  //   this.props.moveTask(cardId, destIndex);
-  // }
 
   addTask() {
     var choice = prompt('Enter the title for your new task', 'New Task');
 
     const newCardId = Date.now();
 
-    var newTaskCard = <TaskCard
-      id={ newCardId }
-      task={ choice }
-      first={ this.props.first || null }
-      last={ this.props.last || null }
-      swimlaneIndex={ this.props.position }
-      move={ this.props.moveTask }
-    />;
-
     const newCardInfo = {
       id: newCardId,
-      cardElement: newTaskCard,
-      swimlaneIndex: this.props.position
+      swimlaneIndex: this.props.position,
+      task: choice,
+      move: this.props.moveTask
     };
 
     this.props.addTask(newCardInfo);
@@ -65,7 +30,14 @@ class Swimlane extends React.Component {
       return card.swimlaneIndex === this.props.position;
     }).map((card) => {
 
-      return card.cardElement;
+      return <TaskCard
+        id={ card.id }
+        task={ card.task }
+        first={ this.props.first || null }
+        last={ this.props.last || null }
+        swimlaneIndex={ card.swimlaneIndex }
+        move={ card.move }
+      />;
     });
 
     return <div className={`swimlane ${this.props.name}`}>
