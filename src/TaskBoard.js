@@ -15,6 +15,10 @@ class TaskBoard extends React.Component {
     }
   }
 
+  addTask() {
+    alert('Add Task code goes here');
+  }
+
   render() {
     return (
       <div className="taskboard">
@@ -22,7 +26,7 @@ class TaskBoard extends React.Component {
             <span className="title">Backlog</span>
 
             <div className="add-task-button">
-              <button>+ Add Task</button>
+              <button onClick={ this.addTask }>+ Add Task</button>
             </div>
           </div>
 
