@@ -9,9 +9,9 @@ class TaskCard extends React.Component {
     return (
       <div className="task-card">
 
-        { !this.props.firstColumn ? leftArrow : null }
+        { !this.props.first ? leftArrow : null }
         <span>{ this.props.task }</span>
-        { !this.props.lastColumn ? rightArrow : null }
+        { !this.props.last ? rightArrow : null }
       </div>
     );
   }
