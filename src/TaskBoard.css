@@ -34,15 +34,15 @@
 }
 
 .swimlane.todo {
-    background-color: red;
+    background-color: crimson;
 }
 
 .swimlane.in-progress {
-    background-color: yellow;
+    background-color: #d5d335;
 }
 
 .swimlane.completed {
-    background-color: green;
+    background-color: #7bb44e;
 }
 
 .task-card {
