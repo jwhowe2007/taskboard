@@ -11,10 +11,8 @@ class Swimlane extends React.Component {
   addTask() {
     var choice = prompt('Enter the title for your new task', 'New Task');
 
-    const newCardId = Date.now();
-
     const newCardInfo = {
-      id: newCardId,
+      id: Date.now(),
       swimlaneIndex: this.props.position,
       task: choice,
       move: this.props.moveTask
@@ -24,7 +22,6 @@ class Swimlane extends React.Component {
   }
 
   render() {
-
     const tasks = this.props.tasks.filter((card) => {
 
       return card.swimlaneIndex === this.props.position;
