@@ -1,10 +1,9 @@
 import React from 'react';
 
 class TaskCard extends React.Component {
-
   render() {
-    const leftArrow = <span className="left-arrow"> &lt; </span>;
-    const rightArrow = <span className="right-arrow"> &gt; </span>;
+    const leftArrow = <button onClick={ this.props.move.bind(this, this.props.id, this.props.swimlaneIndex - 1) } className="left-arrow"> &lt; </button>;
+    const rightArrow = <button onClick={ this.props.move.bind(this, this.props.id, this.props.swimlaneIndex + 1) } className="right-arrow"> &gt; </button>;
 
     return (
       <div className="task-card">

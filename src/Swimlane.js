@@ -5,44 +5,70 @@ class Swimlane extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.moveTask = this.moveTask.bind(this);
     this.addTask = this.addTask.bind(this);
 
-    this.state = {
-      cards: []
-    };
+    // this.state = {
+    //   cards: []
+    // };
   }
+
+  // moveTask(cardId, destIndex) {
+  //
+  //   // this.setState((newState, props) => {
+  //   //
+  //   //   newState.cards = newState.cards.filter((card) => {
+  //   //
+  //   //     return card.id === cardId;
+  //   //   }).map((card) => {
+  //   //
+  //   //     card.index = destIndex;
+  //   //
+  //   //     return card;
+  //   //   });
+  //   //
+  //   //   console.log("New state: ", newState);
+  //   //
+  //   //   return newState;
+  //   // });
+  //
+  //   this.props.moveTask(cardId, destIndex);
+  // }
 
   addTask() {
     var choice = prompt('Enter the title for your new task', 'New Task');
 
+    const newCardId = Date.now();
+
     var newTaskCard = <TaskCard
+      id={ newCardId }
       task={ choice }
       first={ this.props.first || null }
       last={ this.props.last || null }
+      swimlaneIndex={ this.props.position }
+      move={ this.props.moveTask }
     />;
 
-    this.setState((newState, props) => {
+    const newCardInfo = {
+      id: newCardId,
+      cardElement: newTaskCard,
+      swimlaneIndex: this.props.position
+    };
 
-      const newCardInfo = {
-        id: Date.now(),
-        cardElement: newTaskCard
-      };
-
-      newState.cards.push(newCardInfo);
-
-      return newState;
-    });
+    this.props.addTask(newCardInfo);
   }
 
   render() {
-    const tasks = this.state.cards.map((card) => {
+
+    const tasks = this.props.tasks.filter((card) => {
+
+      return card.swimlaneIndex === this.props.position;
+    }).map((card) => {
 
       return card.cardElement;
     });
 
-    const swimlaneClass = "swimlane " + this.props.name;
-
-    return <div className={ swimlaneClass }>
+    return <div className={`swimlane ${this.props.name}`}>
       <span className="title">{ this.props.title }</span>
 
       <div className="add-task-button">
